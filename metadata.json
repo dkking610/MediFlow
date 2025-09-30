@@ -1,5 +1,5 @@
 {
-  "name": "Kerala Migrant Health Records",
-  "description": "A web application to maintain and manage digital health records for migrant workers in Kerala, featuring secure data management, appointment booking, and AI-powered health summaries and insights.",
+  "name": "MediFlow",
+  "description": "A comprehensive hospital management system featuring secure data management, appointment scheduling, billing, inventory control, and AI-powered health insights.",
   "requestFramePermissions": []
 }

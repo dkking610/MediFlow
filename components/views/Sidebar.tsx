@@ -20,6 +20,7 @@ const ChatIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-
 const SearchIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>;
 const UsersIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M15 21a6 6 0 00-9-5.197m0 0A5.975 5.975 0 0112 13a5.975 5.975 0 013 5.197M15 21a6 6 0 00-9-5.197" /></svg>;
 const AnalyticsIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg>;
+const RoadmapIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13v-6m0-6V4a1 1 0 011-1h4a1 1 0 011 1v3m-5 9l5.447 2.724A1 1 0 0017 18.382V7.618a1 1 0 00-1.447-.894L11 9m0 4h.01" /></svg>;
 const AppLogoIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-accent-cyan flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>;
 
 const Sidebar: React.FC<SidebarProps> = ({ activeView = 'Dashboard', onNavigate }) => {
@@ -42,6 +43,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView = 'Dashboard', onNavigate 
     { label: t('dashboard'), icon: <DashboardIcon /> },
     { label: t('userManagement'), icon: <UsersIcon /> },
     { label: t('analytics'), icon: <AnalyticsIcon /> },
+    { label: t('roadmap'), icon: <RoadmapIcon /> },
   ];
   
   let links: NavLink[] = [];
@@ -64,6 +66,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView = 'Dashboard', onNavigate 
           [t('migrantSearch')]: 'Migrant Search',
           [t('userManagement')]: 'User Management',
           [t('analytics')]: 'Analytics',
+          [t('roadmap')]: 'Roadmap',
       }[label] || 'Dashboard';
 
       onNavigate(originalLabel);
@@ -74,7 +77,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView = 'Dashboard', onNavigate 
     <aside className="flex flex-col w-full h-full p-4 overflow-hidden bg-glass-bg/70 backdrop-blur-lg border-r border-glow-border">
       <div className="flex items-center mb-10 flex-shrink-0">
         <AppLogoIcon />
-        <h2 className={`ml-3 text-2xl font-bold text-white transition-opacity ease-in-out duration-300 whitespace-nowrap ${isSidebarOpen ? 'opacity-100' : 'opacity-0'}`}>KMHR</h2>
+        <h2 className={`ml-3 text-2xl font-bold text-white transition-opacity ease-in-out duration-300 whitespace-nowrap ${isSidebarOpen ? 'opacity-100' : 'opacity-0'}`}>MediFlow</h2>
       </div>
       <nav className="flex-1 overflow-y-auto overflow-x-hidden -mr-2 pr-2">
         <ul>
@@ -91,6 +94,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView = 'Dashboard', onNavigate 
                   [t('migrantSearch')]: 'Migrant Search',
                   [t('userManagement')]: 'User Management',
                   [t('analytics')]: 'Analytics',
+                  [t('roadmap')]: 'Roadmap',
               }[link.label] ? 'bg-accent-cyan/20 text-accent-cyan font-bold shadow-lg' : 'text-text-secondary hover:bg-white/10 hover:text-white'} ${!isSidebarOpen && 'justify-center'}`}
                 aria-current={activeView === link.label ? 'page' : undefined}
               >

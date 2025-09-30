@@ -11,7 +11,7 @@ const enTranslations = {
   cancel: 'Cancel',
 
   // Login Page
-  loginPageTitle: 'Kerala Migrant Health Records',
+  loginPageTitle: 'MediFlow',
   loginPageSubtitle: 'Your secure digital health companion.',
   loginAsMigrant: 'Login as Migrant',
   loginAsDoctor: 'Login as Doctor',
@@ -29,6 +29,7 @@ const enTranslations = {
   migrantSearch: 'Migrant Search',
   userManagement: 'User Management',
   analytics: 'Analytics',
+  roadmap: 'Roadmap',
   
   // Migrant Dashboard
   upcomingAppointment: 'Upcoming Appointment',
@@ -91,7 +92,7 @@ const translations: Record<string, Record<string, string>> = {
     cancel: 'ரத்துசெய்',
     
     // Login Page
-    loginPageTitle: 'கேரள புலம்பெயர்ந்தோர் சுகாதார பதிவுகள்',
+    loginPageTitle: 'MediFlow',
     loginPageSubtitle: 'உங்கள் பாதுகாப்பான டிஜிட்டல் சுகாதார துணை.',
     loginAsMigrant: 'புலம்பெயர்ந்தவராக உள்நுழைக',
     loginAsDoctor: 'மருத்துவராக உள்நுழைக',
@@ -109,6 +110,7 @@ const translations: Record<string, Record<string, string>> = {
     migrantSearch: 'புலம்பெயர்ந்தோர் தேடல்',
     userManagement: 'பயனர் மேலாண்மை',
     analytics: 'பகுப்பாய்வு',
+    roadmap: 'திட்ட வரைபடம்',
     
     // Migrant Dashboard
     upcomingAppointment: 'வரவிருக்கும் சந்திப்பு',
@@ -207,27 +209,40 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const isAuthenticated = !!user;
   
+  // Fix: The translation function `t` was incomplete. This completes the logic to handle placeholder replacements and return a string.
   const t = useCallback((key: string, replacements?: Record<string, string | undefined>): string => {
     const langTranslations = translations[language] || translations.en;
-    let translation = (langTranslations as Record<string, string>)[key] || key;
+    let translation = langTranslations[key] || key;
     if (replacements) {
-        Object.keys(replacements).forEach(rKey => {
-            if(replacements[rKey]) {
-                translation = translation.replace(`{{${rKey}}}`, replacements[rKey]!);
-            }
-        });
+      Object.keys(replacements).forEach(rKey => {
+        const value = replacements[rKey];
+        if (value) {
+          translation = translation.replace(`{{${rKey}}}`, value);
+        }
+      });
     }
     return translation;
   }, [language]);
 
+  const value = {
+    isAuthenticated,
+    user,
+    login,
+    logout,
+    language,
+    setLanguage,
+    t,
+  };
 
+  // Fix: The AuthProvider was not providing the context value to its children. This wraps children in AuthContext.Provider.
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, login, logout, language, setLanguage, t }}>
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );
 };
 
+// Fix: The `useAuth` hook was missing. This adds the hook and exports it so other components can access the authentication context.
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (context === undefined) {

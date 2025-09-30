@@ -4,6 +4,7 @@ import Sidebar from '../Sidebar';
 import AdminDashboardContent from './AdminDashboardContent';
 import UserManagementPage from './UserManagementPage';
 import AnalyticsPage from './AnalyticsPage';
+import RoadmapPage from './RoadmapPage';
 import { useAuth } from '../../../contexts/AuthContext';
 
 const AdminDashboard: React.FC = () => {
@@ -16,6 +17,8 @@ const AdminDashboard: React.FC = () => {
                 return <UserManagementPage />;
             case 'Analytics':
                 return <AnalyticsPage />;
+            case 'Roadmap':
+                return <RoadmapPage />;
             case 'Dashboard':
             default:
                 return <AdminDashboardContent />;
@@ -29,6 +32,7 @@ const AdminDashboard: React.FC = () => {
         const viewKey = {
             'User Management': 'userManagement',
             'Analytics': 'analytics',
+            'Roadmap': 'roadmap',
         }[activeView] || activeView;
         return t(viewKey);
     };
