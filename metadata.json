@@ -1,0 +1,5 @@
+{
+  "name": "Kerala Migrant Health Records",
+  "description": "A web application to maintain and manage digital health records for migrant workers in Kerala, featuring secure data management, appointment booking, and AI-powered health summaries and insights.",
+  "requestFramePermissions": []
+}
