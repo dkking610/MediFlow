@@ -86,7 +86,6 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     
     switch (user.role) {
       case UserRole.MIGRANT:
-        // FIX: Explicitly provide `name` to satisfy the `MigrantProfile` type, as casting `user` to a partial makes `name` optional.
         const newMigrant: MigrantProfile = {
             dateOfBirth: '1990-01-01', gender: 'Other', phone: '', address: 'Kerala', preferredLanguage: Language.EN, // Defaults
             ...(user as Partial<MigrantProfile>),
@@ -95,7 +94,6 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setMigrants(prev => [newMigrant, ...prev]);
         break;
       case UserRole.DOCTOR:
-        // FIX: Explicitly provide `name` to satisfy the `DoctorProfile` type, as casting `user` to a partial makes `name` optional.
         const newDoctor: DoctorProfile = {
             specialization: 'General Physician', hospital: 'General Hospital', licenseNumber: `KMC${Math.floor(Math.random()*100000)}`, // Defaults
             ...(user as Partial<DoctorProfile>),
@@ -104,7 +102,6 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setDoctors(prev => [newDoctor, ...prev]);
         break;
       case UserRole.ADMIN:
-        // FIX: Explicitly provide `name` to satisfy the `AdminProfile` type, as casting `user` to a partial makes `name` optional.
         const newAdmin: AdminProfile = {
             permissions: ['MANAGE_USERS'], // Defaults
             ...(user as Partial<AdminProfile>),

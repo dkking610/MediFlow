@@ -209,7 +209,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const isAuthenticated = !!user;
   
-  // Fix: The translation function `t` was incomplete. This completes the logic to handle placeholder replacements and return a string.
   const t = useCallback((key: string, replacements?: Record<string, string | undefined>): string => {
     const langTranslations = translations[language] || translations.en;
     let translation = langTranslations[key] || key;
@@ -234,7 +233,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     t,
   };
 
-  // Fix: The AuthProvider was not providing the context value to its children. This wraps children in AuthContext.Provider.
   return (
     <AuthContext.Provider value={value}>
       {children}
@@ -242,7 +240,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   );
 };
 
-// Fix: The `useAuth` hook was missing. This adds the hook and exports it so other components can access the authentication context.
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (context === undefined) {
